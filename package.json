@@ -1,0 +1,7 @@
+{
+  "name": "dokuwiki-plugin-dx",
+  "version": "0.1.0",
+  "description": "An opinionated plugin to improve the Developer Experience of DokuWiki plugin developers",
+  "author": "Michael Große <mic.grosse@googlemail.com>",
+  "license": "GPL-v2"
+}

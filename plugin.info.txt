@@ -1,0 +1,7 @@
+base   dx
+author Michael Große
+email  mic.grosse+dokuwiki@googlemail.com
+date   2021-03-14
+name   DX Plugin
+desc   An opinionated plugin to improve the Developer Experience of DokuWiki plugin developers
+url    https://dokuwiki.org/plugin:dx
