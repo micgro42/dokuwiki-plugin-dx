@@ -47,6 +47,10 @@ final class Standardize
     private function ensurePluginDirPristine(string $pluginName): void
     {
         $pluginDir = DOKU_PLUGIN . $pluginName;
+        if (!file_exists($pluginDir) || !is_dir($pluginDir)) {
+            throw new RuntimeException("Plugin \"$pluginName\" does not exist in expected location \"$pluginDir\"!");
+        }
+
         // TODO: check for git executable being available
         //       and for .git directory being present in plugin dir
 
