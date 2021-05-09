@@ -17,6 +17,9 @@ final class Standardize
     {
         // figure out plugin standardize version
 
+        // check for no git changes in plugin directory
+        $this->ensurePluginDirPristine($pluginName);
+
         // remove old files
         $filesToDelete = [
             '_test/general.test.php',
@@ -39,6 +42,19 @@ final class Standardize
             $this->copyFileToPlugin($pluginName, $fileName);
         }
         // write standardize version file?
+    }
+
+    private function ensurePluginDirPristine(string $pluginName): void
+    {
+        $pluginDir = DOKU_PLUGIN . $pluginName;
+        // TODO: check for git executable being available
+        //       and for .git directory being present in plugin dir
+
+        chdir($pluginDir);
+        $gitStatusOutput = shell_exec('git status --porcelain');
+        if ($gitStatusOutput !== null) {
+            throw new RuntimeException($pluginDir . ' has uncommited git changes or untracked files!');
+        }
     }
 
     private function deleteFileFromPlugin(string $pluginName, string $fileName): void
