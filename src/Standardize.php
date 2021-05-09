@@ -9,7 +9,7 @@ use RuntimeException;
 
 final class Standardize
 {
-    private const STANDARDIZE_VERSION = '1.0.0';
+    private const STANDARDIZE_VERSION = '0.1.0';
 
     // TODO: add logger trait or something
 
@@ -17,8 +17,14 @@ final class Standardize
     {
         // figure out plugin standardize version
 
-        // remove old files -> add them to deleted.files
-        // this includes _test/general.test.php
+        // remove old files
+        $filesToDelete = [
+            '_test/general.test.php',
+            '.github/workflows/phpCS.yml', // old name of phpQuality.yml
+        ];
+        foreach ($filesToDelete as $fileName) {
+            $this->deleteFileFromPlugin($pluginName, $fileName);
+        }
 
         // copy new files
         $filesToCopy = [
@@ -33,6 +39,18 @@ final class Standardize
             $this->copyFileToPlugin($pluginName, $fileName);
         }
         // write standardize version file?
+    }
+
+    private function deleteFileFromPlugin(string $pluginName, string $fileName): void
+    {
+        $targetFilePath = DOKU_PLUGIN . $pluginName . '/' . $fileName;
+        if (!file_exists($targetFilePath)) {
+            return;
+        }
+        if (!is_writable($targetFilePath)) {
+            throw new RuntimeException($targetFilePath . ' is not writable!');
+        }
+        unlink($targetFilePath);
     }
 
     private function copyFileToPlugin(string $pluginName, string $fileName): void
