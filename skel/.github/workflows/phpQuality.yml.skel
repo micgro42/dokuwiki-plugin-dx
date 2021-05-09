@@ -26,7 +26,7 @@ jobs:
               run: sh travis.sh
 
             - name: run PHP codesniffer
-              run: phpcs -q --standard=_test/phpcs.xml --report=checkstyle lib/plugins/@@PLUGIN_NAME@@
+              run: phpcs -q --ignore='*/vendor/*' --standard=_test/phpcs.xml --report=checkstyle lib/plugins/@@PLUGIN_NAME@@
                   | sed 's/lib\/plugins\/@@PLUGIN_NAME@@\///'
                   | cs2pr
 
@@ -47,6 +47,5 @@ jobs:
               run: phpmd --version
 
             - name: run PHP Mess Detector
-                # FIXME: replace ansi by github after next phpmd release
-              run: phpmd . ansi cleancode,codesize,design
-              continue-on-error: true
+              # FIXME: replace ansi by github after next phpmd release
+              run: phpmd . ansi cleancode,codesize,design --exclude 'vendor/'

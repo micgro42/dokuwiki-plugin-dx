@@ -25,7 +25,7 @@ final class Standardize
             '.versionrc.js',
             'build/pluginInfoVersionUpdater.js',
             '.github/workflows/testLinux.yml',
-            '.github/workflows/phpCS.yml',
+            '.github/workflows/phpQuality.yml',
             '.github/workflows/commit-lint.yml',
             '_test/GeneralTest.php',
         ];
