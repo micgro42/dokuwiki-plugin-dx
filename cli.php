@@ -24,13 +24,9 @@ final class cli_plugin_dx extends CLIPlugin
             return;
         }
         $arguments = $options->getArgs();
-        if (count($arguments) > 1) {
-            $this->error('Please provide only a single plugin name');
-            return;
-        }
-        $pluginName = $arguments[0];
-        // TODO: check that plugin exists
 
-        (new Standardize())->standardizePlugin($pluginName);
+        foreach ( $arguments as $pluginName ) {
+            (new Standardize())->standardizePlugin($pluginName);
+        }
     }
 }
