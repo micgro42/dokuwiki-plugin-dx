@@ -14,6 +14,7 @@ module.exports = {
         const longestKey = Object.keys(options).reduce( (carry, key) => Math.max(carry, key.length), 0);
         return Object.entries(options)
             .map( ([key, value]) => key.padEnd(longestKey) + ' ' + value)
-            .join("\n");
+            .join("\n")
+            + "\n";
     },
 };
