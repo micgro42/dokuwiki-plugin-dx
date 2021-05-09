@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace dokuwiki\plugin\dx\test;
 
+use DokuWikiTest;
 
 /**
  * General tests for the dx plugin
@@ -11,7 +12,7 @@ namespace dokuwiki\plugin\dx\test;
  * @group plugin_dx
  * @group plugins
  */
-final class GeneralTest extends \DokuWikiTest
+final class GeneralTest extends DokuWikiTest
 {
 
     /**
